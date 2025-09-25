@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: da3c5927c50fe2c49b48ae3607900d61
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - clickSFX: {fileID: 11400000, guid: fca29232c7881714f885f1d1463aa754, type: 2}
+  - pauseMenu: {instanceID: 0}
+  - resumeGame: {instanceID: 0}
+  - openSettingsMenu: {instanceID: 0}
+  - returnToMainMenu: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 71eaf011c0928c0408f5be9144fc9be7
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - clickSFX: {fileID: 11400000, guid: fca29232c7881714f885f1d1463aa754, type: 2}
+  - settingsMenu: {instanceID: 0}
+  - closeSettingsMenu: {instanceID: 0}
+  - masterVolumeText: {instanceID: 0}
+  - masterVolumeSlider: {instanceID: 0}
+  - musicVolumeText: {instanceID: 0}
+  - musicVolumeSlider: {instanceID: 0}
+  - sfxVolumeText: {instanceID: 0}
+  - sfxVolumeSlider: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
