@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 12fb49a04fb689147ab73fad502d09f3
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 166731
+  packageName: Metroidvania Controller
+  packageVersion: 1.2
+  assetPath: Assets/MetroidvaniaController/Animation/Vegetation/MovingGrass.anim
+  uploadId: 398611
