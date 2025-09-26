@@ -25,6 +25,17 @@ public class PauseMenu : Menu<PauseMenu>
         returnToMainMenu.onClick.AddListener(ReturnToMainMenu);
     }
 
+
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+            PauseGame();
+    }
+
+
+
+
     public void PauseGame()
     {
         Time.timeScale = 0.0f;
@@ -47,6 +58,6 @@ public class PauseMenu : Menu<PauseMenu>
     private void ReturnToMainMenu()
     {
         UnPauseGame();
-       // LevelManager.Instance.LoadLevel("MainMenu");
+        LevelManager.Instance.LoadMainMenu();
     }
 }

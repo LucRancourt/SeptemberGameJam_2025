@@ -25,7 +25,7 @@ public class MainMenu : Menu<MainMenu>
 
     private void StartGame()
     {
-        LevelManager.Instance.LoadLevel("GameScene");
+        LevelManager.Instance.LoadLevel(2);
     }
 
     private void OpenSettings()
