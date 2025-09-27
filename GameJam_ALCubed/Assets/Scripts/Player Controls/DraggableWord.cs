@@ -38,18 +38,31 @@ public class DraggableWord : MonoBehaviour, IDraggable
 
     public void OnDrag()
     {
-        gameObject.transform.position = Mouse.current.position.ReadValue() + _offset;;
+        gameObject.transform.position = Mouse.current.position.ReadValue() + _offset; ;
     }
 
     public void OnRelease()
     {
-        gameObject.transform.DOMove(_dockedPosition, _timeToDock);
         _IsHeld = false;
+
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()), Vector2.zero);
+
+        if (hit && hit.collider.gameObject.GetComponent<DragTarget>() != null)
+        {
+            hit.collider.gameObject.GetComponent<DragTarget>().SetHeldWord(this);
+            gameObject.transform.DOMove(hit.collider.gameObject.GetComponent<DragTarget>().DropPosition, _timeToDock/3f);
+        }
+        else
+        {
+            gameObject.transform.DOMove(_dockedPosition, _timeToDock);
+        }
     }
 
     #region Getters/Setters
 
     public bool IsOnTarget => _IsOnTarget;
+    public string GetWord() { return _word; }
+    public void SetDockedPosition(Vector3 position) { _dockedPosition = position; }
 
     #endregion
 }
