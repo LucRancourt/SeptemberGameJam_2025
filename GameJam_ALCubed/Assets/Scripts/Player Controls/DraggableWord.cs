@@ -20,6 +20,7 @@ public class DraggableWord : MonoBehaviour, IDraggable
     private Vector3 _dockedPosition, _dragPosition;
     private Vector2 _offset;
     private bool _IsOnTarget, _IsHeld;
+    private DropTarget _currentTarget;
 
 
     private void Start()
@@ -52,22 +53,39 @@ public class DraggableWord : MonoBehaviour, IDraggable
     public void OnRelease()
     {
         if (!_IsHeld)
-            return; 
+            return;
 
         _IsHeld = false;
 
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()), Vector2.zero, 100, _targetMask);
+        RaycastHit2D hit = Physics2D.Raycast(
+            Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()),
+            Vector2.zero,
+            100,
+            _targetMask
+        );
 
-        if (hit && hit.collider.gameObject.GetComponent<DropTarget>() != null)
+        if (hit && hit.collider.TryGetComponent(out DropTarget newTarget))
         {
-            hit.collider.gameObject.GetComponent<DropTarget>().SetHeldWord(this);
-            gameObject.transform.DOMove(hit.collider.gameObject.GetComponent<DropTarget>().DropPosition, _timeToDock / 3f);
+            if (_currentTarget != null)
+                _currentTarget.ClearHeldWord();
+
+            _currentTarget = newTarget;
+            _currentTarget.SetHeldWord(this);
+
+            transform.DOMove(newTarget.DropPosition, _timeToDock / 3f);
         }
         else
         {
-            gameObject.transform.DOMove(_dockedPosition, _timeToDock);
+            if (_currentTarget != null)
+            {
+                _currentTarget.ClearHeldWord();
+                _currentTarget = null;
+            }
+
+            transform.DOMove(_dockedPosition, _timeToDock);
         }
     }
+
 
     #region Getters/Setters
 
