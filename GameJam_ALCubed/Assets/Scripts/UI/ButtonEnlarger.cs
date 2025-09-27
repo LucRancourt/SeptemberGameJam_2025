@@ -21,6 +21,12 @@ public class ButtonEnlarger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         _rectTransform = gameObject.GetComponent<RectTransform>();
     }
 
+    public void OnDisable()  //if the menu/button is disabled, we want it to go back to normal
+    {
+        Debug.Log($"Disabling {gameObject.name}");
+        _rectTransform.localScale = _defaultScale;
+
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -31,12 +37,6 @@ public class ButtonEnlarger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         _rectTransform.DOScale(_defaultScale, _timeToScale).SetUpdate(true);
     }
-
-    public void OnDisable()     //if the menu/button is disabled, we want it to go back to normal
-    {
-        _rectTransform.localScale = _defaultScale;
-    }
-
 
 }
 
