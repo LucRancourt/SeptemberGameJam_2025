@@ -12,10 +12,12 @@ public class DraggableWord : MonoBehaviour, IDraggable
 {
     [SerializeField] string _word;
     [SerializeField] float _timeToDock = 0.7f;     //Time is takes to move back to the original docked position
+    [SerializeField] LayerMask _targetMask;     //Time is takes to move back to the original docked position
 
-    private Vector3 _dockedPosition;
+    private Vector3 _dockedPosition,  _dragPosition;
     private Vector2 _offset;
     private bool _IsOnTarget, _IsHeld;
+
 
     private void Start()
     {
@@ -38,19 +40,24 @@ public class DraggableWord : MonoBehaviour, IDraggable
 
     public void OnDrag()
     {
-        gameObject.transform.position = Mouse.current.position.ReadValue() + _offset; ;
+        _dragPosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        _dragPosition.z = _dockedPosition.z;
+        gameObject.transform.position = _dragPosition;/// + _offset;
     }
 
     public void OnRelease()
     {
+        if (!_IsHeld)
+            return; 
+
         _IsHeld = false;
 
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()), Vector2.zero);
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()), Vector2.zero, 100, _targetMask);
 
-        if (hit && hit.collider.gameObject.GetComponent<DragTarget>() != null)
+        if (hit && hit.collider.gameObject.GetComponent<DropTarget>() != null)
         {
-            hit.collider.gameObject.GetComponent<DragTarget>().SetHeldWord(this);
-            gameObject.transform.DOMove(hit.collider.gameObject.GetComponent<DragTarget>().DropPosition, _timeToDock/3f);
+            hit.collider.gameObject.GetComponent<DropTarget>().SetHeldWord(this);
+            gameObject.transform.DOMove(hit.collider.gameObject.GetComponent<DropTarget>().DropPosition, _timeToDock / 3f);
         }
         else
         {

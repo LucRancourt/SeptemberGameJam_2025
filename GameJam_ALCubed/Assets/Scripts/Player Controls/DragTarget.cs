@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DragTarget : MonoBehaviour
+public class DropTarget : MonoBehaviour
 {
     [SerializeField] string _correctWord;
 
@@ -11,9 +11,10 @@ public class DragTarget : MonoBehaviour
     private void Start()
     {
         _dropPosition = gameObject.transform.position;
+        _dropPosition.z -= 1;
     }
 
-    public bool isHeldWordValid()
+    public bool IsHeldWordValid()
     {
         if (_heldWord == null && _correctWord != "")    //just in case some panels dont actually have required words?
             return false;
@@ -21,7 +22,9 @@ public class DragTarget : MonoBehaviour
         return (_heldWord.GetWord().ToUpper().Equals(_correctWord.ToUpper()));
     }
 
+    #region Getter/Setter
     public Vector3 DropPosition => _dropPosition;
     public void SetHeldWord(DraggableWord word) { this._heldWord = word; }
     public bool IsHoldingWord() { return (_heldWord != null); }
+    #endregion
 }
