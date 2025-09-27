@@ -1,8 +1,10 @@
 using System.Security.Cryptography;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 /*
     The onomatopoeia word.
@@ -13,8 +15,9 @@ public class DraggableWord : MonoBehaviour, IDraggable
     [SerializeField] string _word;
     [SerializeField] float _timeToDock = 0.7f;     //Time is takes to move back to the original docked position
     [SerializeField] LayerMask _targetMask;     //Time is takes to move back to the original docked position
+    [SerializeField] TextMeshProUGUI _text;
 
-    private Vector3 _dockedPosition,  _dragPosition;
+    private Vector3 _dockedPosition, _dragPosition;
     private Vector2 _offset;
     private bool _IsOnTarget, _IsHeld;
 
@@ -23,6 +26,7 @@ public class DraggableWord : MonoBehaviour, IDraggable
     {
         _dockedPosition = gameObject.transform.position;
         InputManager.Instance.OnMouseRelease += OnRelease;
+        _text.text = _word;
     }
 
     private void Update()
