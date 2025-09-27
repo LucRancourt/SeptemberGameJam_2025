@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 000000005fceaf78b743c846
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -457,6 +457,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6396387048688047311, guid: 30d1446ca9aeb5a4b937014052a81c1e, type: 3}
+      propertyPath: _dragDepth
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6396387048688047311, guid: 30d1446ca9aeb5a4b937014052a81c1e, type: 3}
       propertyPath: _targetMask.m_Bits
       value: 64
       objectReference: {fileID: 0}
@@ -574,6 +578,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3792813846146628128, guid: 30d1446ca9aeb5a4b937014052a81c1e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 292078109521148806, guid: 30d1446ca9aeb5a4b937014052a81c1e, type: 3}
       propertyPath: m_Name
       value: Onomatopoeia (1)
@@ -674,9 +682,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4640557196245067006, guid: 30d1446ca9aeb5a4b937014052a81c1e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6396387048688047311, guid: 30d1446ca9aeb5a4b937014052a81c1e, type: 3}
       propertyPath: _word
       value: kapow
+      objectReference: {fileID: 0}
+    - target: {fileID: 6396387048688047311, guid: 30d1446ca9aeb5a4b937014052a81c1e, type: 3}
+      propertyPath: _dragDepth
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6396387048688047311, guid: 30d1446ca9aeb5a4b937014052a81c1e, type: 3}
       propertyPath: _targetMask.m_Bits

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -47,6 +48,8 @@ public class LevelManager : Singleton<LevelManager>//, ISaveable
 
     public void LoadLevel(int buildIndex)
     {
+        DOTween.KillAll();
+        
         if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName(PERSISTENT_SCENE_NAME))     //do not unload the persistent scene
             SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
 
