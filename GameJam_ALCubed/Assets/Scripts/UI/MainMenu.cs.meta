@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 13af519ba1acfda4085830e1b6d71684
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - clickSFX: {fileID: 11400000, guid: fca29232c7881714f885f1d1463aa754, type: 2}
+  - playButton: {instanceID: 0}
+  - settingsButton: {instanceID: 0}
+  - quitButton: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
