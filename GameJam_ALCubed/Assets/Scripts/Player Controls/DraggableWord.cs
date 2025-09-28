@@ -19,7 +19,8 @@ public class DraggableWord : MonoBehaviour, IDraggable
     [SerializeField] float _dragDepth = -1f;
 
     private Vector3 _dockedPosition, _dragPosition;
-    private bool _IsHeld;
+    private Vector2 _offset;
+    private bool _IsOnTarget, _IsHeld;
 
     private DropTarget _currentTarget;
 
@@ -52,46 +53,39 @@ public class DraggableWord : MonoBehaviour, IDraggable
     public void OnRelease()
     {
         if (!_IsHeld)
-            return; 
+            return;
 
         _IsHeld = false;
 
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()), Vector2.zero, 100, _targetMask);
+        RaycastHit2D hit = Physics2D.Raycast(
+            Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()),
+            Vector2.zero,
+            100,
+            _targetMask
+        );
 
-        if (hit)
+        if (hit && hit.collider.TryGetComponent(out DropTarget newTarget))
         {
-            DropTarget target = hit.collider.gameObject.GetComponent<DropTarget>();
+            if (_currentTarget != null)
+                _currentTarget.ClearHeldWord();
 
-            if (target != null)
-            {
-                if(target != _currentTarget)
-                    target.GetHeldWord()?.ReturnToDock();
+            _currentTarget = newTarget;
+            _currentTarget.SetHeldWord(this);
 
-                target.SetHeldWord(this);
-                gameObject.transform.DOMove(hit.collider.gameObject.GetComponent<DropTarget>().DropPosition, _timeToDock / 3f);
-                _currentTarget = target;
-            }
-            else
-            {
-                ReturnToDock();
-            }
-
+            transform.DOMove(newTarget.DropPosition, _timeToDock / 3f);
         }
         else
         {
-            ReturnToDock();
+            if (_currentTarget != null)
+            {
+                _currentTarget.ClearHeldWord();
+                _currentTarget = null;
+            }
+
+            transform.DOMove(_dockedPosition, _timeToDock);
         }
     }
 
-    private void ReturnToDock()
-    {
-        gameObject.transform.DOMove(_dockedPosition, _timeToDock);
-        if (_currentTarget != null)
-        {
-            _currentTarget.SetHeldWord(null);
-            _currentTarget = null;
-        }
-    }
 
     #region Getters/Setters
 
