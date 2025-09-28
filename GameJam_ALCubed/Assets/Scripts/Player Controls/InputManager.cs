@@ -31,6 +31,8 @@ public class InputManager : Singleton<InputManager>
 
     private void OnClickPerformed(InputAction.CallbackContext context)
     {
+        if (_mainCamera == null)
+            return;
         RaycastHit2D hit = Physics2D.Raycast(_mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue()), Vector2.zero);
 
         if (hit)

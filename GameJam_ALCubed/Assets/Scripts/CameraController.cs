@@ -10,7 +10,7 @@ public class PanelData
     public DropTarget[] dragTargets;
 }
 
-public class CameraController : MonoBehaviour
+public class CameraController : Singleton<CameraController>
 {
     [SerializeField] private Camera cam;
     [SerializeField] private PanelData[] panels;
@@ -26,6 +26,7 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         ZoomOutToAllPanels();
+        //DontDestroyOnLoad(gameObject);
     }
 
     private void Update()
