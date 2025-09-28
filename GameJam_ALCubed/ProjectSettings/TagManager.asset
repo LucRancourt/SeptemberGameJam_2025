@@ -12,8 +12,8 @@ TagManager:
   - Water
   - UI
   - DropTarget
-  - 
-  - 
+  - Comic Background
+  - Comic Foreground
   - 
   - 
   - 
@@ -41,11 +41,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Comic_Background
+    uniqueID: 1187529655
+    locked: 0
+  - name: Comic_Foreground
+    uniqueID: 4004014551
+    locked: 0
   - name: Draggable
     uniqueID: 2024787551
-    locked: 0
-  - name: 
-    uniqueID: 1187529655
     locked: 0
   m_RenderingLayers:
   - Default
