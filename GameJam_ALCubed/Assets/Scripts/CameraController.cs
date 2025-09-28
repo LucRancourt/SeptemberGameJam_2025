@@ -6,14 +6,14 @@ public class PanelData
 {
     public GameObject panel;
     public DropTarget[] dragTargets;
-    public Transform waypoint;   // Stickman’in duracağı yer
+    public Transform waypoint;
 }
 
 public class CameraController : Singleton<CameraController>
 {
     [SerializeField] private Camera cam;
     [SerializeField] private PanelData[] panels;
-    [SerializeField] private Transform stickman;  // sahnedeki Stickman
+    [SerializeField] private Transform stickman;
 
     [SerializeField] private float transitionSpeed = 2f;
     [SerializeField] private float failDelay = 1.5f;
@@ -71,7 +71,6 @@ public class CameraController : Singleton<CameraController>
             _targetSize = Mathf.Max(sizeY, sizeX);
         }
 
-        // Stickman'i waypoint'e taşı
         if (stickman != null && panels[index].waypoint != null)
         {
             stickman.position = panels[index].waypoint.position;

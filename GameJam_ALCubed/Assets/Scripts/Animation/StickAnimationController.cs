@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 [RequireComponent(typeof(Animator))]
 public class StickAnimationController : MonoBehaviour
@@ -69,8 +70,15 @@ public class StickAnimationController : MonoBehaviour
             Debug.Log($"[StickAnim] Panel {panelIndex} End finished → jump to last panel");
 
             int lastPanel = CameraController.Instance.PanelsCount - 1;
-            bool success = CameraController.Instance.CheckCurrentPanel();
 
+            _animator.applyRootMotion = false;
+
+            CameraController.Instance.ResetTransitionFlag();
+            CameraController.Instance.ZoomToPanel(lastPanel);
+
+            StartCoroutine(ReenableRootMotion());
+
+            bool success = CameraController.Instance.CheckCurrentPanel();
             if (success)
             {
                 Debug.Log($"[StickAnim] Last panel {lastPanel} success → End");
@@ -85,8 +93,13 @@ public class StickAnimationController : MonoBehaviour
         else
         {
             Debug.Log($"[StickAnim] End finished on {panelIndex} → go to next panel");
+
+            _animator.applyRootMotion = false;
+
             CameraController.Instance.ResetTransitionFlag();
             CameraController.Instance.ZoomToNextPanel();
+
+            StartCoroutine(ReenableRootMotion());
         }
     }
     
@@ -94,5 +107,11 @@ public class StickAnimationController : MonoBehaviour
     {
         Debug.Log($"[StickAnim] Fail finished → reload scene");
         CameraController.Instance.TriggerSceneReload();
+    }
+    
+    private IEnumerator ReenableRootMotion()
+    {
+        yield return null;
+        _animator.applyRootMotion = true;
     }
 }
