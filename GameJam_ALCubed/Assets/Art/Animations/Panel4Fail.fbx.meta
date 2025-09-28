@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 662e8e628d54e304d9edb37a1c70636e
+guid: 4e540e811b3174d4283cf43c9367f37f
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -17,11 +17,11 @@ ModelImporter:
     removeConstantScaleCurves: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Anim_Panel_02_End' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+    animationImportWarnings: "\nClip '4_End_Fail' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
       to improve retargeting quality.\n\t'QuickRigCharacter_LeftLeg' has translation
       animation that will be discarded.\n\t'QuickRigCharacter_RightLeg' has translation
-      animation that will be discarded.\n\t'QuickRigCharacter_LeftForeArm' has translation
+      animation that will be discarded.\n\t'QuickRigCharacter_RightForeArm' has translation
       animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
@@ -36,11 +36,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Anim_Panel_02_End
-      takeName: Anim_Panel_02_End
-      internalID: -1615943351791751420
-      firstFrame: 955
-      lastFrame: 1040
+      name: Panel4Fail
+      takeName: 4_End_Fail
+      internalID: -977661678910056735
+      firstFrame: 2460
+      lastFrame: 2530
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -59,11 +59,18 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 1
+        functionName: OnFailAnimationFinished
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 3
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 955
+      additiveReferencePoseFrame: 2460
     isReadable: 0
   meshes:
     lODScreenPercentages: []

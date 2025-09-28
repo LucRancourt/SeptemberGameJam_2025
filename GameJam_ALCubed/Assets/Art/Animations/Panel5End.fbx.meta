@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a06a0ec9786a6fa4e9cc44a4b568691c
+guid: 82a4ed7c27aa3a84da4bd5854f109f53
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -17,11 +17,11 @@ ModelImporter:
     removeConstantScaleCurves: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Anim_Panel_02_Start' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'QuickRigCharacter_LeftLeg' has translation
-      animation that will be discarded.\n\t'QuickRigCharacter_RightLeg' has translation
-      animation that will be discarded.\n\t'QuickRigCharacter_LeftForeArm' has translation
+    animationImportWarnings: "\nClip '5_End' has import animation warnings that might
+      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
+      retargeting quality.\n\t'QuickRigCharacter_LeftLeg' has translation animation
+      that will be discarded.\n\t'QuickRigCharacter_RightLeg' has translation animation
+      that will be discarded.\n\t'QuickRigCharacter_RightForeArm' has translation
       animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
@@ -36,18 +36,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Anim_Panel_02_Start
-      takeName: Anim_Panel_02_Start
-      internalID: 6205612106345458119
-      firstFrame: 670
-      lastFrame: 710
+      name: Panel5End
+      takeName: 5_End
+      internalID: 9141636978200652798
+      firstFrame: 1765
+      lastFrame: 1920
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -59,11 +59,18 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 1
+        functionName: OnEndAnimationFinished
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 4
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 670
+      additiveReferencePoseFrame: 1765
     isReadable: 0
   meshes:
     lODScreenPercentages: []
@@ -418,11 +425,11 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: a06a0ec9786a6fa4e9cc44a4b568691c, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 2
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
