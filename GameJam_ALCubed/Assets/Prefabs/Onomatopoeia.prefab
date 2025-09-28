@@ -47,13 +47,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f9ce8bf26fc18e48bdee1594740c29c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _word: BOOM
+  _word: kaboom
   _timeToDock: 0.7
   _targetMask:
     serializedVersion: 2
     m_Bits: 64
   _text: {fileID: 1936964352275963613}
-  _dragDepth: 10
+  _spriteRenderer: {fileID: -3792813846146628128}
+  _canvas: {fileID: 4640557196245067006}
 --- !u!212 &-3792813846146628128
 SpriteRenderer:
   m_ObjectHideFlags: 0
