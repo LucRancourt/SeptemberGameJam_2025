@@ -1169,28 +1169,34 @@ MonoBehaviour:
   - panel: {fileID: 373594519}
     dragTargets:
     - {fileID: 2518802371934087568}
-    waypoint: {fileID: 1131888334}
+    startPoint: {fileID: 1131888334}
+    failYOffset: 0
   - panel: {fileID: 2143616474}
     dragTargets:
     - {fileID: 3230030062702826937}
-    waypoint: {fileID: 766159920}
+    startPoint: {fileID: 766159920}
+    failYOffset: 0
   - panel: {fileID: 1242664730}
     dragTargets:
     - {fileID: 2038086780}
-    waypoint: {fileID: 778921096}
+    startPoint: {fileID: 778921096}
+    failYOffset: -3.57
   - panel: {fileID: 2118660048}
     dragTargets:
     - {fileID: 1315871018}
-    waypoint: {fileID: 1211761747}
+    startPoint: {fileID: 1211761747}
+    failYOffset: 0
   - panel: {fileID: 138160807}
     dragTargets:
     - {fileID: 973761335}
     - {fileID: 1830806593}
-    waypoint: {fileID: 1875913828}
+    startPoint: {fileID: 1875913828}
+    failYOffset: -6.47
   - panel: {fileID: 1800226835}
     dragTargets:
     - {fileID: 622219163}
-    waypoint: {fileID: 1388979414}
+    startPoint: {fileID: 1388979414}
+    failYOffset: 0
   stickman: {fileID: 955368780}
   transitionSpeed: 2
   failDelay: 1.5

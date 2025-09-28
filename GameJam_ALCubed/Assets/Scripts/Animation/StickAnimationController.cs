@@ -59,6 +59,11 @@ public class StickAnimationController : MonoBehaviour
         else
         {
             Debug.Log($"[StickAnim] Panel {panelIndex} failed → play Fail");
+
+            _animator.applyRootMotion = false;
+            CameraController.Instance.TeleportToFailPosition(panelIndex);
+            StartCoroutine(ReenableRootMotion());
+
             PlayFailAnimation(panelIndex);
         }
     }

@@ -6,7 +6,8 @@ public class PanelData
 {
     public GameObject panel;
     public DropTarget[] dragTargets;
-    public Transform waypoint;
+    public Transform startPoint;
+    public float failYOffset;
 }
 
 public class CameraController : Singleton<CameraController>
@@ -71,9 +72,9 @@ public class CameraController : Singleton<CameraController>
             _targetSize = Mathf.Max(sizeY, sizeX);
         }
 
-        if (stickman != null && panels[index].waypoint != null)
+        if (stickman != null && panels[index].startPoint != null)
         {
-            stickman.position = panels[index].waypoint.position;
+            stickman.position = panels[index].startPoint.position;
         }
 
         StickAnimationController stickAnim = FindFirstObjectByType<StickAnimationController>();
@@ -81,6 +82,11 @@ public class CameraController : Singleton<CameraController>
         {
             stickAnim.PlayStartAnimation(index);
         }
+    }
+
+    public void TeleportToFailPosition(int index)
+    {
+       stickman.transform.Translate(0f, panels[index].failYOffset, 0f);
     }
 
     public bool CheckCurrentPanel()
