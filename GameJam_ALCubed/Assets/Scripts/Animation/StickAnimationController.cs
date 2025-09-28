@@ -4,6 +4,9 @@ using System.Collections;
 [RequireComponent(typeof(Animator))]
 public class StickAnimationController : MonoBehaviour
 {
+    [SerializeField] private Animator guard_01;
+    [SerializeField] private Animator guard_02;
+
     private Animator _animator;
 
     private void Start()
@@ -56,11 +59,25 @@ public class StickAnimationController : MonoBehaviour
 
         if (success)
         {
+            if (panelIndex == 3)
+            {
+                guard_02.Play("End");
+                Invoke(nameof(PlayEndAnimationPANEL4), guard_02.GetCurrentAnimatorStateInfo(0).length);
+
+                return;
+            }
+
             Debug.Log($"[StickAnim] Panel {panelIndex} success → play End");
             PlayEndAnimation(panelIndex);
         }
         else
         {
+
+            if (panelIndex == 2)
+            {
+                guard_01.Play("End");
+            }
+
             Debug.Log($"[StickAnim] Panel {panelIndex} failed → play Fail");
 
             _animator.applyRootMotion = false;
@@ -121,5 +138,14 @@ public class StickAnimationController : MonoBehaviour
     {
         yield return null;
         _animator.applyRootMotion = true;
+    }
+
+
+
+    public void PlayEndAnimationPANEL4()
+    {
+        string stateName = 3 == 0 ? "End" : $"End{3}";
+        Debug.Log($"[StickAnim] >>> PlayEndAnimation: {stateName} (layer {3})");
+        _animator.Play(stateName, 3);
     }
 }
