@@ -27,8 +27,6 @@ public class DropTarget : MonoBehaviour
         _expansionSequence = DOTween.Sequence();
         _expansionSequence.Pause();
         _expansionSequence.SetAutoKill(false);
-
-        StartCoroutine(TestExpansion(10));
     }
 
     public bool IsFilled()
@@ -78,6 +76,8 @@ public class DropTarget : MonoBehaviour
 
     public void SetHeldWord(DraggableWord word)
     {
+        if (word == null) return;
+
         _heldWord = word;
         _expandedScale = _heldWord.transform.localScale * _relativeSize;
     }
