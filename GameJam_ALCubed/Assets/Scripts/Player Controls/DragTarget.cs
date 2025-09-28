@@ -26,7 +26,11 @@ public class DropTarget : MonoBehaviour
 
     #region Getter/Setter
     public Vector3 DropPosition => _dropPosition;
+    
     public void SetHeldWord(DraggableWord word) { _heldWord = word; }
     public void ClearHeldWord() { _heldWord = null; }
+
+    public DraggableWord GetHeldWord() { return this._heldWord; }
+    public bool IsHoldingWord() { return (_heldWord != null); }
     #endregion
 }

@@ -16,10 +16,12 @@ public class DraggableWord : MonoBehaviour, IDraggable
     [SerializeField] float _timeToDock = 0.7f;     //Time is takes to move back to the original docked position
     [SerializeField] LayerMask _targetMask;     //Time is takes to move back to the original docked position
     [SerializeField] TextMeshProUGUI _text;
+    [SerializeField] float _dragDepth = -1f;
 
     private Vector3 _dockedPosition, _dragPosition;
     private Vector2 _offset;
     private bool _IsOnTarget, _IsHeld;
+
     private DropTarget _currentTarget;
 
 
@@ -39,15 +41,13 @@ public class DraggableWord : MonoBehaviour, IDraggable
     public void OnClick()
     {
         _IsHeld = true;
-        _offset = new Vector2(gameObject.transform.position.x - Mouse.current.position.ReadValue().x,
-                                 gameObject.transform.position.y - Mouse.current.position.ReadValue().y);
     }
 
     public void OnDrag()
     {
         _dragPosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        _dragPosition.z = _dockedPosition.z;
-        gameObject.transform.position = _dragPosition;/// + _offset;
+        _dragPosition.z = _dragDepth;
+        gameObject.transform.position = _dragPosition;
     }
 
     public void OnRelease()
@@ -89,41 +89,8 @@ public class DraggableWord : MonoBehaviour, IDraggable
 
     #region Getters/Setters
 
-    public bool IsOnTarget => _IsOnTarget;
     public string GetWord() { return _word; }
     public void SetDockedPosition(Vector3 position) { _dockedPosition = position; }
 
     #endregion
 }
-
-/*
-    #region Implemented from Interfaces (Drag and Drop) 
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        //When the word is clicked on
-        Debug.Log("Bubble has been clicked on");
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        //Whenever the held word moves
-
-        gameObject.transform.position += (Vector3)eventData.delta;
-        Debug.Log("Bubble is being moved");
-    }
-
-    void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
-    {
-        Debug.Log("Bubble has been released");
-        //Whenever the word is released
-
-        //Check for valid target
-
-        //if valid, move to target position
-
-        //else, return to docked position
-        gameObject.transform.DOMove(_dockedPosition, _timeToDock);
-    }
-    #endregion
-*/
