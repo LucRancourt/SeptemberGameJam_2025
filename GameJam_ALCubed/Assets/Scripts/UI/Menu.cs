@@ -1,10 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Menu<T> : Singleton<T> where T : MonoBehaviour
 {
     // Variables 
-    [SerializeField] private SFX clickSFX;
+    [SerializeField] private List<SFX> clickSFX = new List<SFX>();
 
     private Button[] _menuButtons;
 
@@ -16,14 +17,14 @@ public class Menu<T> : Singleton<T> where T : MonoBehaviour
 
         _menuButtons = GetComponentsInChildren<Button>(true);
 
-        foreach (Button button in _menuButtons)
-        {
-            button.onClick.AddListener(PlayClickSFX);
-        }
+        // foreach (Button button in _menuButtons)
+        // {
+        //     button.onClick.AddListener(PlayClickSFX);
+        // }
     }
 
     private void PlayClickSFX()
     {
-        AudioManager.Instance.PlaySound(clickSFX);
+        AudioManager.Instance.PlayRandomSound(clickSFX);
     }
 }

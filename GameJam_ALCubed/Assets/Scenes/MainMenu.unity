@@ -735,7 +735,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13af519ba1acfda4085830e1b6d71684, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickSFX: {fileID: 11400000, guid: fca29232c7881714f885f1d1463aa754, type: 2}
+  clickSFX:
+  - {fileID: 11400000, guid: 57d0929aa4a5be149a69a83a51d000d9, type: 2}
+  - {fileID: 11400000, guid: 77d5f720f6a811e49a307e8583c0df24, type: 2}
+  - {fileID: 11400000, guid: 70cbb789acf9790488216b8540aafd0e, type: 2}
   playButton: {fileID: 1107722676}
   settingsButton: {fileID: 1744760276}
   quitButton: {fileID: 1571742913}

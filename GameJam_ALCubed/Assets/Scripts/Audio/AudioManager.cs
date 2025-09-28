@@ -59,7 +59,7 @@ public class AudioManager : Singleton<AudioManager>
 
         public void PlayRandomSound(List<SFX> listOfSFX)
         {
-            PlaySound(listOfSFX[Random.Range(0, listOfSFX.Count - 1)]);
+            PlaySound(listOfSFX[Random.Range(0, listOfSFX.Count)]);
         }
     #endregion
 

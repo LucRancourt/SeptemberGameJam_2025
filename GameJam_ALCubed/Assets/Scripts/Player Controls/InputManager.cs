@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,6 +8,7 @@ public class InputManager : Singleton<InputManager>
     private InputSystem_Actions _actions;
     private Camera _mainCamera;
 
+    [SerializeField] private List<SFX> clickSFX = new List<SFX>();
     //Mouse-Click Actions
     public InputAction ClickAction { get; private set; }
 
@@ -22,18 +24,21 @@ public class InputManager : Singleton<InputManager>
         ClickAction.started += OnClickPerformed;
         ///ClickAction.performed += OnClickPerformed;
         ClickAction.canceled += OnClickReleased;
+
     }
 
     void OnDisable()
     {
-        //_actions.DragAndDrop.Disable();
+        _actions.DragAndDrop.Disable();
     }
 
     private void OnClickPerformed(InputAction.CallbackContext context)
     {
         if (_mainCamera == null)
             return;
+
         RaycastHit2D hit = Physics2D.Raycast(_mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue()), Vector2.zero);
+        AudioManager.Instance.PlayRandomSound(clickSFX);
 
         if (hit)
         {
@@ -44,5 +49,10 @@ public class InputManager : Singleton<InputManager>
     private void OnClickReleased(InputAction.CallbackContext context)
     {
         OnMouseRelease?.Invoke();
+    }
+    
+    private void PlayClickSFX()
+    {
+        AudioManager.Instance.PlayRandomSound(clickSFX);
     }
 }
