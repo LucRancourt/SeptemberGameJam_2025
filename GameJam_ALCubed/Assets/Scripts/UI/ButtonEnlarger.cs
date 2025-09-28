@@ -23,9 +23,7 @@ public class ButtonEnlarger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnDisable()  //if the menu/button is disabled, we want it to go back to normal
     {
-        Debug.Log($"Disabling {gameObject.name}");
         _rectTransform.localScale = _defaultScale;
-
     }
 
     public void OnPointerEnter(PointerEventData eventData)

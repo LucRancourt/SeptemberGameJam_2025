@@ -55,13 +55,12 @@ public class StickAnimationController : MonoBehaviour
 
     public void OnStartAnimationFinished()
     {
-        Debug.Log("Animation Finished!");
+        //Enlarge Bubble and panel transition here
     }
 
     public void OnEndAnimationFinished()
     {
-        Debug.Log("Animation Finished!");
-
+        //Move to Next panel here
     }
 
 }
