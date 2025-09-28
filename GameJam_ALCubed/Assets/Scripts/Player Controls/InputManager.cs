@@ -14,7 +14,7 @@ public class InputManager : Singleton<InputManager>
 
     public event Action OnMouseRelease;
 
-    void OnEnable()
+    void Start()
     {
         _mainCamera = Camera.main;
         _actions = new InputSystem_Actions();
@@ -29,7 +29,7 @@ public class InputManager : Singleton<InputManager>
 
     void OnDisable()
     {
-        _actions.DragAndDrop.Disable();
+        _actions?.DragAndDrop.Disable();
     }
 
     private void OnClickPerformed(InputAction.CallbackContext context)
