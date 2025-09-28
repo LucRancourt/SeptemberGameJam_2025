@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8d4dd289a452cd349bd12e7b94e87b69
+guid: 58479ae0d142913438f0212cea7fc662
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -19,13 +19,15 @@ ModelImporter:
     animationImportErrors: 
     animationImportWarnings: "\nClip '3_Start' has import animation warnings that
       might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'QuickRigCharacter_RightLeg' has translation
+      to improve retargeting quality.\n\t'QuickRigCharacter_LeftLeg' has translation
+      animation that will be discarded.\n\t'QuickRigCharacter_RightLeg' has translation
+      animation that will be discarded.\n\t'QuickRigCharacter_RightForeArm' has translation
       animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -34,10 +36,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Panel3Start
+      name: 3_Start
       takeName: 3_Start
       internalID: 8045032210901174108
-      firstFrame: 1124
+      firstFrame: 1065
       lastFrame: 1125
       wrapMode: 0
       orientationOffsetY: 0
@@ -68,7 +70,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 1124
+      additiveReferencePoseFrame: 1065
     isReadable: 0
   meshes:
     lODScreenPercentages: []

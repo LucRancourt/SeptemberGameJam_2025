@@ -1176,11 +1176,11 @@ MonoBehaviour:
     waypoint: {fileID: 766159920}
   - panel: {fileID: 1242664730}
     dragTargets:
-    - {fileID: 1315871018}
+    - {fileID: 2038086780}
     waypoint: {fileID: 778921096}
   - panel: {fileID: 2118660048}
     dragTargets:
-    - {fileID: 2038086780}
+    - {fileID: 1315871018}
     waypoint: {fileID: 1211761747}
   - panel: {fileID: 138160807}
     dragTargets:
@@ -1210,7 +1210,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &559809469
 Transform:
   m_ObjectHideFlags: 0
@@ -1710,7 +1710,7 @@ Transform:
   m_GameObject: {fileID: 778921095}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.82, y: 3.08, z: -0.83}
+  m_LocalPosition: {x: -6.38, y: 3.08, z: -0.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2359,7 +2359,7 @@ GameObject:
   - component: {fileID: 1242664732}
   - component: {fileID: 1242664733}
   m_Layer: 0
-  m_Name: Panel3
+  m_Name: Panel2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3404,7 +3404,7 @@ Transform:
   m_GameObject: {fileID: 1875913827}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.69, y: 2.9, z: -0.83}
+  m_LocalPosition: {x: -6.47, y: 2.9, z: -0.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3842,7 +3842,7 @@ GameObject:
   - component: {fileID: 2118660050}
   - component: {fileID: 2118660051}
   m_Layer: 0
-  m_Name: Panel2
+  m_Name: Panel3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
