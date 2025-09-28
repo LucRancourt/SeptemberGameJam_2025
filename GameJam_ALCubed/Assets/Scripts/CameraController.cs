@@ -1,32 +1,37 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
 [System.Serializable]
 public class PanelData
 {
     public GameObject panel;
-    public float waitTime;
     public DropTarget[] dragTargets;
+    public Transform startPoint;
+    public float failYOffset;
 }
 
 public class CameraController : Singleton<CameraController>
 {
     [SerializeField] private Camera cam;
     [SerializeField] private PanelData[] panels;
+    [SerializeField] private Transform stickman;
+
     [SerializeField] private float transitionSpeed = 2f;
     [SerializeField] private float failDelay = 1.5f;
 
     public int CurrentPanelIndex => _currentPanelIndex;
+    public int PanelsCount => panels.Length;
 
     private int _currentPanelIndex = -1;
-    private Vector3 _targetPosition;
-    private float _targetSize;
+    private Vector3 _targetPosition, _cameraStartPosition;
+    private float _targetSize, _cameraStartSize;
+    private bool _isTransitioning = false;
 
     private void Start()
     {
         ZoomOutToAllPanels();
-        //DontDestroyOnLoad(gameObject);
+        _cameraStartPosition = cam.transform.position;
+        _cameraStartSize = cam.orthographicSize;
     }
 
     private void Update()
@@ -43,11 +48,11 @@ public class CameraController : Singleton<CameraController>
             Time.deltaTime * transitionSpeed
         );
     }
-    
+
     private void ZoomOutToAllPanels()
     {
         _targetPosition = new Vector3(0, 0, -10f);
-        _targetSize = 10f;
+        _targetSize = 5f;
         _currentPanelIndex = -1;
     }
 
@@ -56,7 +61,7 @@ public class CameraController : Singleton<CameraController>
         if (index < 0 || index >= panels.Length) return;
 
         _currentPanelIndex = index;
-        Debug.Log($"[CameraController] Zooming to panel {index}");
+        Debug.Log($"[CameraController] ZoomToPanel({index})");
 
         BoxCollider2D col = panels[index].panel.GetComponent<BoxCollider2D>();
         if (col != null)
@@ -67,95 +72,72 @@ public class CameraController : Singleton<CameraController>
             float sizeY = b.size.y / 2f;
             float sizeX = b.size.x / 2f / cam.aspect;
             _targetSize = Mathf.Max(sizeY, sizeX);
-            
-            StopAllCoroutines();
-            StartCoroutine(CheckAfterDelay(index));
+        }
+
+        if (stickman != null && panels[index].startPoint != null)
+        {
+            stickman.position = panels[index].startPoint.position;
+        }
+
+        StickAnimationController stickAnim = FindFirstObjectByType<StickAnimationController>();
+        if (stickAnim != null)
+        {
+            stickAnim.PlayStartAnimation(index);
         }
     }
-    
-    private IEnumerator CheckAfterDelay(int panelIndex)
-    {
-        float wait = panels[panelIndex].waitTime;
-        if (wait > 0)
-            yield return new WaitForSeconds(wait);
 
-        Debug.Log($"[CameraController] Wait finished → checking panel {panelIndex}");
-        CheckCurrentPanel();
+    public void TeleportToFailPosition(int index)
+    {
+       stickman.transform.Translate(0f, panels[index].failYOffset, 0f);
     }
 
-    public void CheckCurrentPanel()
+    public bool CheckCurrentPanel()
     {
         if (_currentPanelIndex < 0 || _currentPanelIndex >= panels.Length)
-        {
-            Debug.LogWarning("[CameraController] CheckCurrentPanel called with invalid index!");
-            return;
-        }
+            return false;
 
-        Debug.Log($"[CameraController] Checking panel {_currentPanelIndex}");
-
-        bool allCorrect = true;
         foreach (DropTarget target in panels[_currentPanelIndex].dragTargets)
         {
             if (!target.IsCorrect())
-            {
-                Debug.Log($"[CameraController] Target {target.name} is WRONG");
-                allCorrect = false;
-                break;
-            }
-            else
-            {
-                Debug.Log($"[CameraController] Target {target.name} is CORRECT");
-            }
+                return false;
         }
 
-        if (allCorrect)
-        {
-            Debug.Log("[CameraController] All correct → SUCCESS");
-            OnSuccessfulGuess();
-        }
-        else
-        {
-            Debug.Log("[CameraController] Some wrong → FAIL");
-            OnFail();
-        }
+        return true;
     }
 
-    public void OnSuccessfulGuess()
+    public void ZoomToNextPanel()
     {
-        StartCoroutine(GoToNextPanelWithDelay());
-    }
+        if (_isTransitioning) return;
+        _isTransitioning = true;
 
-    private IEnumerator GoToNextPanelWithDelay()
-    {
         int nextPanel = _currentPanelIndex + 1;
 
         if (nextPanel < panels.Length)
         {
-            float wait = (_currentPanelIndex >= 0) ? panels[_currentPanelIndex].waitTime : 0f;
-
-            if (wait > 0)
-                yield return new WaitForSeconds(wait);
-
             ZoomToPanel(nextPanel);
         }
         else
         {
-            float wait = (_currentPanelIndex >= 0) ? panels[_currentPanelIndex].waitTime : 0f;
-
-            if (wait > 0)
-                yield return new WaitForSeconds(wait);
-
-            SceneManager.LoadScene("MainMenu");
+            //SceneManager.LoadScene("MainMenu");
+            LevelManager.Instance.LoadMainMenu();
         }
+
+        _isTransitioning = false;
     }
 
-    private void OnFail()
+    public void TriggerSceneReload()
     {
         Invoke(nameof(ReloadScene), failDelay);
     }
 
     private void ReloadScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        LevelManager.Instance.LoadLevel(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void ResetTransitionFlag()
+    {
+        _isTransitioning = false;
     }
 }
