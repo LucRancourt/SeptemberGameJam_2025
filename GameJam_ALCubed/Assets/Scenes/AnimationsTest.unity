@@ -1012,6 +1012,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6396387048688047311, guid: 30d1446ca9aeb5a4b937014052a81c1e, type: 3}
+      propertyPath: _sfx
+      value: 
+      objectReference: {fileID: 11400000, guid: 4cd1cf8731f145b409ee095b8fd2cc0d, type: 2}
+    - target: {fileID: 6396387048688047311, guid: 30d1446ca9aeb5a4b937014052a81c1e, type: 3}
       propertyPath: _word
       value: tink
       objectReference: {fileID: 0}
@@ -1077,6 +1081,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6396387048688047311, guid: 30d1446ca9aeb5a4b937014052a81c1e, type: 3}
+      propertyPath: _sfx
+      value: 
+      objectReference: {fileID: 11400000, guid: 00f22efbd84270d4cbbb080d6b5e236b, type: 2}
     - target: {fileID: 6396387048688047311, guid: 30d1446ca9aeb5a4b937014052a81c1e, type: 3}
       propertyPath: _word
       value: beep
@@ -1686,6 +1694,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6396387048688047311, guid: 30d1446ca9aeb5a4b937014052a81c1e, type: 3}
+      propertyPath: _sfx
+      value: 
+      objectReference: {fileID: 11400000, guid: 0176edef230af8b44b32260854d01292, type: 2}
+    - target: {fileID: 6396387048688047311, guid: 30d1446ca9aeb5a4b937014052a81c1e, type: 3}
       propertyPath: _word
       value: tada!!
       objectReference: {fileID: 0}
@@ -1746,6 +1758,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6396387048688047311, guid: 30d1446ca9aeb5a4b937014052a81c1e, type: 3}
+      propertyPath: _sfx
+      value: 
+      objectReference: {fileID: 11400000, guid: 2cf707fff58955a4aa666960ee16fedd, type: 2}
     - target: {fileID: 6396387048688047311, guid: 30d1446ca9aeb5a4b937014052a81c1e, type: 3}
       propertyPath: _word
       value: pew
@@ -3629,6 +3645,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6396387048688047311, guid: 30d1446ca9aeb5a4b937014052a81c1e, type: 3}
+      propertyPath: _sfx
+      value: 
+      objectReference: {fileID: 11400000, guid: 245e39d45fbe79a4e9b907bbb932e63c, type: 2}
+    - target: {fileID: 6396387048688047311, guid: 30d1446ca9aeb5a4b937014052a81c1e, type: 3}
       propertyPath: _word
       value: crash
       objectReference: {fileID: 0}
@@ -4315,6 +4335,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6396387048688047311, guid: 30d1446ca9aeb5a4b937014052a81c1e, type: 3}
+      propertyPath: _sfx
+      value: 
+      objectReference: {fileID: 11400000, guid: ed00a9f538d7b9340b3923c7669ba64d, type: 2}
+    - target: {fileID: 6396387048688047311, guid: 30d1446ca9aeb5a4b937014052a81c1e, type: 3}
       propertyPath: _word
       value: shhhhh
       objectReference: {fileID: 0}
@@ -4883,6 +4907,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6396387048688047311, guid: 30d1446ca9aeb5a4b937014052a81c1e, type: 3}
+      propertyPath: _sfx
+      value: 
+      objectReference: {fileID: 11400000, guid: 28bd0ef22d582e04f96faebe7ed4e136, type: 2}
+    - target: {fileID: 6396387048688047311, guid: 30d1446ca9aeb5a4b937014052a81c1e, type: 3}
       propertyPath: _word
       value: kaboom!
       objectReference: {fileID: 0}
@@ -4943,6 +4971,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6396387048688047311, guid: 30d1446ca9aeb5a4b937014052a81c1e, type: 3}
+      propertyPath: _sfx
+      value: 
+      objectReference: {fileID: 11400000, guid: 9364e4e6adeff424eb103ed2758d5d72, type: 2}
     - target: {fileID: 6396387048688047311, guid: 30d1446ca9aeb5a4b937014052a81c1e, type: 3}
       propertyPath: _word
       value: pssst

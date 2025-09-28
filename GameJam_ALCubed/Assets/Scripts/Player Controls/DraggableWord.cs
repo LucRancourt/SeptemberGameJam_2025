@@ -22,6 +22,9 @@ public class DraggableWord : MonoBehaviour, IDraggable
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] Canvas _canvas;
 
+    [Header("SFX")]
+    [SerializeField] private SFX _sfx;
+
     private Vector3 _dockedPosition, _dragPosition;
     private bool _IsHeld;
 
@@ -117,6 +120,9 @@ public class DraggableWord : MonoBehaviour, IDraggable
     {
         _spriteRenderer.enabled = true;
         _canvas.enabled = true;
+
+
+        AudioManager.Instance.PlaySound(_sfx);
     }
 
     #region Getters/Setters
