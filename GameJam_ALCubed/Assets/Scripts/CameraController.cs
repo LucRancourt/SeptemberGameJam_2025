@@ -140,6 +140,7 @@ public class CameraController : Singleton<CameraController>
     public void TriggerSceneReload()
     {
         Invoke(nameof(ReloadScene), failDelay);
+        Invoke(nameof(FadeOut), failDelay - 5.0f);
     }
 
     private void ReloadScene()
@@ -151,5 +152,11 @@ public class CameraController : Singleton<CameraController>
     public void ResetTransitionFlag()
     {
         _isTransitioning = false;
+    }
+
+
+    private void FadeOut()
+    {
+        FadeToBlack.Instance.Fade();
     }
 }
