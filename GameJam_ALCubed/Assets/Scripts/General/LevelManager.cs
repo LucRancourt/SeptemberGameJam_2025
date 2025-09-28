@@ -49,7 +49,7 @@ public class LevelManager : Singleton<LevelManager>//, ISaveable
     public void LoadLevel(int buildIndex)
     {
         DOTween.KillAll();
-        
+
         if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName(PERSISTENT_SCENE_NAME))     //do not unload the persistent scene
             SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
 
@@ -67,6 +67,11 @@ public class LevelManager : Singleton<LevelManager>//, ISaveable
     public void LoadMainMenu()
     {
         LoadLevel(MAIN_MENU_SCENE_INDEX);
+    }
+    
+     public void LoadFirstLevel()
+    {
+        LoadLevel(PLAYABLE_LEVEL_START_INDEX);
     }
     #endregion
 }

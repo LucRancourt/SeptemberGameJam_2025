@@ -23,13 +23,15 @@ public class CameraController : Singleton<CameraController>
     public int PanelsCount => panels.Length;
 
     private int _currentPanelIndex = -1;
-    private Vector3 _targetPosition;
-    private float _targetSize;
+    private Vector3 _targetPosition, _cameraStartPosition;
+    private float _targetSize, _cameraStartSize;
     private bool _isTransitioning = false;
 
     private void Start()
     {
         ZoomOutToAllPanels();
+        _cameraStartPosition = cam.transform.position;
+        _cameraStartSize = cam.orthographicSize;
     }
 
     private void Update()
@@ -50,7 +52,7 @@ public class CameraController : Singleton<CameraController>
     private void ZoomOutToAllPanels()
     {
         _targetPosition = new Vector3(0, 0, -10f);
-        _targetSize = 10f;
+        _targetSize = 5f;
         _currentPanelIndex = -1;
     }
 
@@ -116,7 +118,8 @@ public class CameraController : Singleton<CameraController>
         }
         else
         {
-            SceneManager.LoadScene("MainMenu");
+            //SceneManager.LoadScene("MainMenu");
+            LevelManager.Instance.LoadMainMenu();
         }
 
         _isTransitioning = false;
@@ -129,7 +132,8 @@ public class CameraController : Singleton<CameraController>
 
     private void ReloadScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        LevelManager.Instance.LoadLevel(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void ResetTransitionFlag()
