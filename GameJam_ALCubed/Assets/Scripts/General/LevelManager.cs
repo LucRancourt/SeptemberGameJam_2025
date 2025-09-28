@@ -68,10 +68,11 @@ public class LevelManager : Singleton<LevelManager>//, ISaveable
     {
         LoadLevel(MAIN_MENU_SCENE_INDEX);
     }
-    
-     public void LoadFirstLevel()
+
+    public void LoadFirstLevel()
     {
         LoadLevel(PLAYABLE_LEVEL_START_INDEX);
+        InputManager.Instance?.EnableDragAndDrop();
     }
     #endregion
 }

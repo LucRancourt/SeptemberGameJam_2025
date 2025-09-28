@@ -44,6 +44,9 @@ public class StickAnimationController : MonoBehaviour
     {
         Debug.Log($"[StickAnim] Panel {panelIndex} Start finished → Idle");
         PlayIdleAnimation(panelIndex);
+
+        CameraController.Instance.AnimateCurrentPanelWords();
+
     }
 
     public void OnIdleAnimationFinished(int panelIndex)
@@ -107,13 +110,13 @@ public class StickAnimationController : MonoBehaviour
             StartCoroutine(ReenableRootMotion());
         }
     }
-    
+
     public void OnFailAnimationFinished(int panelIndex)
     {
         Debug.Log($"[StickAnim] Fail finished → reload scene");
         CameraController.Instance.TriggerSceneReload();
     }
-    
+
     private IEnumerator ReenableRootMotion()
     {
         yield return null;

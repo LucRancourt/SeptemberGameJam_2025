@@ -1,3 +1,4 @@
+using Mono.Cecil;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -88,7 +89,7 @@ public class CameraController : Singleton<CameraController>
 
     public void TeleportToFailPosition(int index)
     {
-       stickman.transform.Translate(0f, panels[index].failYOffset, 0f);
+        stickman.transform.Translate(0f, panels[index].failYOffset, 0f);
     }
 
     public bool CheckCurrentPanel()
@@ -103,6 +104,17 @@ public class CameraController : Singleton<CameraController>
         }
 
         return true;
+    }
+
+    public void AnimateCurrentPanelWords()
+    {
+        if (_currentPanelIndex < 0 || _currentPanelIndex >= panels.Length)
+            return;
+
+        foreach (DropTarget target in panels[_currentPanelIndex].dragTargets)
+        {
+            StartCoroutine(target.ExpandAndSwapPanel());
+        }
     }
 
     public void ZoomToNextPanel()

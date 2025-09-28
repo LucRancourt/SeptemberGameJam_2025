@@ -50,9 +50,18 @@ public class InputManager : Singleton<InputManager>
     {
         OnMouseRelease?.Invoke();
     }
-    
+
     private void PlayClickSFX()
     {
         AudioManager.Instance.PlayRandomSound(clickSFX);
+    }
+
+    public void DisableDragAndDrop()
+    {
+        _actions?.DragAndDrop.Disable();
+    }
+    public void EnableDragAndDrop()
+    {
+        _actions?.DragAndDrop.Enable();
     }
 }

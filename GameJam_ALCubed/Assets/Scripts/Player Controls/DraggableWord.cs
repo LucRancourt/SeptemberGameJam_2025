@@ -33,6 +33,7 @@ public class DraggableWord : MonoBehaviour, IDraggable
         _dockedPosition = gameObject.transform.position;
         InputManager.Instance.OnMouseRelease += OnRelease;
         _text.text = _word;
+        PanelHandler.Instance.OnStartPressed += HideWord;
     }
 
     private void Update()
@@ -60,11 +61,11 @@ public class DraggableWord : MonoBehaviour, IDraggable
     public void OnRelease()
     {
         if (!_IsHeld)
-            return; 
+            return;
 
         _IsHeld = false;
-        _spriteRenderer.sortingOrder -= 2; 
-        _canvas.sortingOrder -= 2; 
+        _spriteRenderer.sortingOrder -= 2;
+        _canvas.sortingOrder -= 2;
 
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()), Vector2.zero, 100, _targetMask);
 

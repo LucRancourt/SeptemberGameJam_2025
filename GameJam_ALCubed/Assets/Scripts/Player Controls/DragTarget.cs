@@ -4,7 +4,7 @@ using DG.Tweening;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
-[RequireComponent (typeof (SpriteRenderer))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class DropTarget : MonoBehaviour
 {
     [SerializeField] private string _correctWord;
@@ -27,6 +27,8 @@ public class DropTarget : MonoBehaviour
         _expansionSequence = DOTween.Sequence();
         _expansionSequence.Pause();
         _expansionSequence.SetAutoKill(false);
+
+        PanelHandler.Instance.OnStartPressed += HideTarget;
     }
 
     public bool IsFilled()
@@ -49,8 +51,6 @@ public class DropTarget : MonoBehaviour
         }
         else
         {
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
-           
             _heldWord.ShowWord();       //ToDO: set HideWord and spriterenderer disable to start button click event
             _heldWord.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
 
@@ -64,11 +64,9 @@ public class DropTarget : MonoBehaviour
         }
     }
 
-
-    public IEnumerator TestExpansion(float waitTime)
+    public void HideTarget()
     {
-        yield return new WaitForSeconds(waitTime);
-        StartCoroutine(ExpandAndSwapPanel());
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     #region Getter/Setter
