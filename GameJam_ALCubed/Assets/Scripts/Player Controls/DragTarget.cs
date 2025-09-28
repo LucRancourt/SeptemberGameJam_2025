@@ -74,9 +74,8 @@ public class DropTarget : MonoBehaviour
 
     public void SetHeldWord(DraggableWord word)
     {
-        if (word == null) return;
-
         _heldWord = word;
+         if (word == null) return;
         _expandedScale = _heldWord.transform.localScale * _relativeSize;
     }
     public void ClearHeldWord() { _heldWord = null; }
