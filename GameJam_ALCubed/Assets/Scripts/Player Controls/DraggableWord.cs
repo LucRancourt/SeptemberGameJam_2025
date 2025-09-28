@@ -41,11 +41,13 @@ public class DraggableWord : MonoBehaviour, IDraggable
             OnDrag();
     }
 
+    #region Click and Drag
+
     public void OnClick()
     {
         _IsHeld = true;
-        _spriteRenderer.sortingOrder += 2; 
-        _canvas.sortingOrder += 2; 
+        _spriteRenderer.sortingOrder += 2;
+        _canvas.sortingOrder += 2;
     }
 
     public void OnDrag()
@@ -102,7 +104,19 @@ public class DraggableWord : MonoBehaviour, IDraggable
             _currentTarget = null;
         }
     }
+    #endregion
 
+    public void HideWord()
+    {
+        _spriteRenderer.enabled = false;
+        _canvas.enabled = false;
+    }
+
+    public void ShowWord()
+    {
+        _spriteRenderer.enabled = true;
+        _canvas.enabled = true;
+    }
 
     #region Getters/Setters
 
