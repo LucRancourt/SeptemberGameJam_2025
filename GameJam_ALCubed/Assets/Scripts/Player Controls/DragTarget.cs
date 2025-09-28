@@ -28,7 +28,7 @@ public class DropTarget : MonoBehaviour
         _expansionSequence.Pause();
         _expansionSequence.SetAutoKill(false);
 
-        StartCoroutine(TestExpansion(10));
+        PanelHandler.Instance.OnStartPressed += HideTarget;
     }
 
     public bool IsFilled()
@@ -51,8 +51,6 @@ public class DropTarget : MonoBehaviour
         }
         else
         {
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
-           
             _heldWord.ShowWord();       //ToDO: set HideWord and spriterenderer disable to start button click event
             _heldWord.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
 
@@ -66,11 +64,8 @@ public class DropTarget : MonoBehaviour
         }
     }
 
-
-    public IEnumerator TestExpansion(float waitTime)
-    {
-        yield return new WaitForSeconds(waitTime);
-        StartCoroutine(ExpandAndSwapPanel());
+    public void HideTarget() {
+         gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     #region Getter/Setter

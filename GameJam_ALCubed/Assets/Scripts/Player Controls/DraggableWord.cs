@@ -33,6 +33,7 @@ public class DraggableWord : MonoBehaviour, IDraggable
         _dockedPosition = gameObject.transform.position;
         InputManager.Instance.OnMouseRelease += OnRelease;
         _text.text = _word;
+        PanelHandler.Instance.OnStartPressed += HideWord;
     }
 
     private void Update()

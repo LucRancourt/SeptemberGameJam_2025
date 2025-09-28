@@ -1,3 +1,4 @@
+using Mono.Cecil;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -103,6 +104,17 @@ public class CameraController : Singleton<CameraController>
         }
 
         return true;
+    }
+
+    public void AnimateCurrentPanelWords()
+    {
+        if (_currentPanelIndex < 0 || _currentPanelIndex >= panels.Length)
+            return;
+
+        foreach (DropTarget target in panels[_currentPanelIndex].dragTargets)
+        {
+            StartCoroutine(target.ExpandAndSwapPanel());
+        }
     }
 
     public void ZoomToNextPanel()

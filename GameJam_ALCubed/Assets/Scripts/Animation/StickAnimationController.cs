@@ -44,6 +44,9 @@ public class StickAnimationController : MonoBehaviour
     {
         Debug.Log($"[StickAnim] Panel {panelIndex} Start finished → Idle");
         PlayIdleAnimation(panelIndex);
+
+        CameraController.Instance.AnimateCurrentPanelWords();
+
     }
 
     public void OnIdleAnimationFinished(int panelIndex)
