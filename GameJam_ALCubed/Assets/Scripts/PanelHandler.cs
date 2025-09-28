@@ -37,7 +37,6 @@ public class PanelHandler : MonoBehaviour
             return;
         }
 
-        Debug.Log("[PanelHandler] GO pressed → checking current panel");
         cameraController.CheckCurrentPanel();
     }
 }

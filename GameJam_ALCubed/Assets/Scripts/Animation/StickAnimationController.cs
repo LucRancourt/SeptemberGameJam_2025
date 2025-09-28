@@ -1,66 +1,98 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 public class StickAnimationController : MonoBehaviour
 {
     private Animator _animator;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        _animator = gameObject.GetComponent<Animator>();
 
-        PlayEndAnimation(0);
+    private void Start()
+    {
+        _animator = GetComponent<Animator>();
     }
 
     public void PlayStartAnimation(int panelIndex)
     {
-        try
-        {
-            _animator.Play("Start", panelIndex);
-        }
-        catch (Exception e)
-        {
-            Debug.Log(e);
-        }
-
+        string stateName = panelIndex == 0 ? "Start" : $"Start{panelIndex}";
+        Debug.Log($"[StickAnim] >>> PlayStartAnimation: {stateName} (layer {panelIndex})");
+        _animator.Play(stateName, panelIndex);
     }
 
     public void PlayIdleAnimation(int panelIndex)
     {
-        try
-        {
-            _animator.Play("Idle", panelIndex);
-        }
-        catch (Exception e)
-        {
-            Debug.Log(e);
-        }
-
+        string stateName = panelIndex == 0 ? "Idle" : $"Idle{panelIndex}";
+        Debug.Log($"[StickAnim] >>> PlayIdleAnimation: {stateName} (layer {panelIndex})");
+        _animator.Play(stateName, panelIndex);
     }
 
     public void PlayEndAnimation(int panelIndex)
     {
-        try
-        {
-            _animator.Play("End", panelIndex);
-        }
-        catch (Exception e)
-        {
-            Debug.Log(e);
-        }
-
+        string stateName = panelIndex == 0 ? "End" : $"End{panelIndex}";
+        Debug.Log($"[StickAnim] >>> PlayEndAnimation: {stateName} (layer {panelIndex})");
+        _animator.Play(stateName, panelIndex);
     }
 
-    public void OnStartAnimationFinished()
+    public void PlayFailAnimation(int panelIndex)
     {
-        //Enlarge Bubble and panel transition here
+        string stateName = panelIndex == 0 ? "Fail" : $"Fail{panelIndex}";
+        Debug.Log($"[StickAnim] >>> PlayFailAnimation: {stateName} (layer {panelIndex})");
+        _animator.Play(stateName, panelIndex);
     }
 
-    public void OnEndAnimationFinished()
+    // --- Animation Events ---
+    public void OnStartAnimationFinished(int panelIndex)
     {
-        //Move to Next panel here
+        Debug.Log($"[StickAnim] Panel {panelIndex} Start finished → Idle");
+        PlayIdleAnimation(panelIndex);
     }
 
+    public void OnIdleAnimationFinished(int panelIndex)
+    {
+        Debug.Log($"[StickAnim] Idle finished → checking panel {panelIndex}");
+        bool success = CameraController.Instance.CheckCurrentPanel();
+
+        if (success)
+        {
+            Debug.Log($"[StickAnim] Panel {panelIndex} success → play End");
+            PlayEndAnimation(panelIndex);
+        }
+        else
+        {
+            Debug.Log($"[StickAnim] Panel {panelIndex} failed → play Fail");
+            PlayFailAnimation(panelIndex);
+        }
+    }
+
+    public void OnEndAnimationFinished(int panelIndex)
+    {
+        if (panelIndex == CameraController.Instance.PanelsCount - 2)
+        {
+            Debug.Log($"[StickAnim] Panel {panelIndex} End finished → jump to last panel");
+
+            int lastPanel = CameraController.Instance.PanelsCount - 1;
+            bool success = CameraController.Instance.CheckCurrentPanel();
+
+            if (success)
+            {
+                Debug.Log($"[StickAnim] Last panel {lastPanel} success → End");
+                PlayEndAnimation(lastPanel);
+            }
+            else
+            {
+                Debug.Log($"[StickAnim] Last panel {lastPanel} fail → Fail");
+                PlayFailAnimation(lastPanel);
+            }
+        }
+        else
+        {
+            Debug.Log($"[StickAnim] End finished on {panelIndex} → go to next panel");
+            CameraController.Instance.ResetTransitionFlag();
+            CameraController.Instance.ZoomToNextPanel();
+        }
+    }
+    
+    public void OnFailAnimationFinished(int panelIndex)
+    {
+        Debug.Log($"[StickAnim] Fail finished → reload scene");
+        CameraController.Instance.TriggerSceneReload();
+    }
 }
