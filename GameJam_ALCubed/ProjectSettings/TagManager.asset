@@ -47,8 +47,11 @@ TagManager:
   - name: Comic_Foreground
     uniqueID: 4004014551
     locked: 0
-  - name: Draggable
+  - name: DockedBubble
     uniqueID: 2024787551
+    locked: 0
+  - name: 
+    uniqueID: 3017208075
     locked: 0
   m_RenderingLayers:
   - Default

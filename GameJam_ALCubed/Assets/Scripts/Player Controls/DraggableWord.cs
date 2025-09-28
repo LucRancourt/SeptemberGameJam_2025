@@ -16,11 +16,14 @@ public class DraggableWord : MonoBehaviour, IDraggable
     [SerializeField] float _timeToDock = 0.7f;     //Time is takes to move back to the original docked position
     [SerializeField] LayerMask _targetMask;     //Time is takes to move back to the original docked position
     [SerializeField] TextMeshProUGUI _text;
+
+    [Header("Render Ordering")]
     [SerializeField] float _dragDepth = -1f;
+    [SerializeField] SpriteRenderer _spriteRenderer;
+    [SerializeField] Canvas _canvas;
 
     private Vector3 _dockedPosition, _dragPosition;
-    private Vector2 _offset;
-    private bool _IsOnTarget, _IsHeld;
+    private bool _IsHeld;
 
     private DropTarget _currentTarget;
 
@@ -41,6 +44,8 @@ public class DraggableWord : MonoBehaviour, IDraggable
     public void OnClick()
     {
         _IsHeld = true;
+        _spriteRenderer.sortingOrder += 2; 
+        _canvas.sortingOrder += 2; 
     }
 
     public void OnDrag()
@@ -53,36 +58,48 @@ public class DraggableWord : MonoBehaviour, IDraggable
     public void OnRelease()
     {
         if (!_IsHeld)
-            return;
+            return; 
 
         _IsHeld = false;
+        _spriteRenderer.sortingOrder -= 2; 
+        _canvas.sortingOrder -= 2; 
 
-        RaycastHit2D hit = Physics2D.Raycast(
-            Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()),
-            Vector2.zero,
-            100,
-            _targetMask
-        );
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()), Vector2.zero, 100, _targetMask);
 
-        if (hit && hit.collider.TryGetComponent(out DropTarget newTarget))
+        if (hit)
         {
-            if (_currentTarget != null)
-                _currentTarget.ClearHeldWord();
+            DropTarget target = hit.collider.gameObject.GetComponent<DropTarget>();
 
-            _currentTarget = newTarget;
-            _currentTarget.SetHeldWord(this);
+            if (target != null)
+            {
+                if (target != _currentTarget)        //If we are dopping over a new target
+                    target.GetHeldWord()?.ReturnToDock();
 
-            transform.DOMove(newTarget.DropPosition, _timeToDock / 3f);
+                target.SetHeldWord(this);
+                gameObject.transform.DOMove(target.DropPosition, _timeToDock / 3f);
+
+                _currentTarget?.SetHeldWord(null);  //If on a target already, empty it
+                _currentTarget = target;
+            }
+            else                                    //If we are dropping over a non-target
+            {
+                ReturnToDock();
+            }
+
         }
         else
         {
-            if (_currentTarget != null)
-            {
-                _currentTarget.ClearHeldWord();
-                _currentTarget = null;
-            }
+            ReturnToDock();
+        }
+    }
 
-            transform.DOMove(_dockedPosition, _timeToDock);
+    private void ReturnToDock()
+    {
+        gameObject.transform.DOMove(_dockedPosition, _timeToDock);
+        if (_currentTarget != null)
+        {
+            _currentTarget.SetHeldWord(null);
+            _currentTarget = null;
         }
     }
 
