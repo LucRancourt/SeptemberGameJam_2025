@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a256a96b1d3e7fc4ea4a4e8ee9d4cd53
+guid: 3ebf7ca4783d3db44808fe667eada18c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 68704042661873443
-    second: Onomatopuzzle_0
+      213: -4320295261928297051
+    second: logo_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Onomatopuzzle_0
+      name: logo_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 211
-        height: 33
+        x: 9
+        y: 6
+        width: 930
+        height: 487
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3278e7976f514f000800000000000000
-      internalID: 68704042661873443
+      spriteID: 5ade5f3695a3b04c0800000000000000
+      internalID: -4320295261928297051
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Onomatopuzzle_0: 68704042661873443
+      logo_0: -4320295261928297051
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
