@@ -578,6 +578,54 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -207.6}
   m_SizeDelta: {x: 250, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &495486642
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 495486644}
+  - component: {fileID: 495486643}
+  m_Layer: 0
+  m_Name: InputManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &495486643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495486642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb88521833c82064882a803d29af9cf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickSFX:
+  - {fileID: 11400000, guid: 57d0929aa4a5be149a69a83a51d000d9, type: 2}
+  - {fileID: 11400000, guid: 77d5f720f6a811e49a307e8583c0df24, type: 2}
+  - {fileID: 11400000, guid: 70cbb789acf9790488216b8540aafd0e, type: 2}
+--- !u!4 &495486644
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495486642}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.4076453, y: -0.21354787, z: 0.017071787}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &522277467
 GameObject:
   m_ObjectHideFlags: 0
@@ -1143,7 +1191,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71eaf011c0928c0408f5be9144fc9be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickSFX: {fileID: 11400000, guid: fca29232c7881714f885f1d1463aa754, type: 2}
+  clickSFX:
+  - {fileID: 11400000, guid: 57d0929aa4a5be149a69a83a51d000d9, type: 2}
+  - {fileID: 11400000, guid: 77d5f720f6a811e49a307e8583c0df24, type: 2}
+  - {fileID: 11400000, guid: 70cbb789acf9790488216b8540aafd0e, type: 2}
   settingsMenu: {fileID: 1006076675}
   closeSettingsMenu: {fileID: 1497669096}
   masterVolumeText: {fileID: 105419078}
@@ -2227,7 +2278,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da3c5927c50fe2c49b48ae3607900d61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickSFX: {fileID: 11400000, guid: fca29232c7881714f885f1d1463aa754, type: 2}
+  clickSFX:
+  - {fileID: 11400000, guid: 57d0929aa4a5be149a69a83a51d000d9, type: 2}
+  - {fileID: 11400000, guid: 77d5f720f6a811e49a307e8583c0df24, type: 2}
+  - {fileID: 11400000, guid: 70cbb789acf9790488216b8540aafd0e, type: 2}
   pauseMenu: {fileID: 1375025011}
   resumeGame: {fileID: 2139298895}
   openSettingsMenu: {fileID: 1991622397}
