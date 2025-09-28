@@ -4,6 +4,9 @@ using System.Collections;
 [RequireComponent(typeof(Animator))]
 public class StickAnimationController : MonoBehaviour
 {
+    [SerializeField] private GuardController guard3;
+    [SerializeField] private GuardController guard4;
+    
     private Animator _animator;
 
     private void Start()
@@ -58,6 +61,12 @@ public class StickAnimationController : MonoBehaviour
         {
             Debug.Log($"[StickAnim] Panel {panelIndex} success → play End");
             PlayEndAnimation(panelIndex);
+            
+            if (panelIndex == 4 && guard4 != null)
+            {
+                Debug.Log("GuardSuccessPlaying");
+                guard4.PlaySuccess();
+            }
         }
         else
         {
@@ -68,6 +77,12 @@ public class StickAnimationController : MonoBehaviour
             StartCoroutine(ReenableRootMotion());
 
             PlayFailAnimation(panelIndex);
+            
+            if (panelIndex == 3 && guard3 != null)
+            {
+                Debug.Log("GuardFailPlaying");
+                guard3.PlayFail();
+            }
         }
     }
 
